@@ -28,6 +28,7 @@ public class Test {
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
+		System.out.println("draw: " + lot.draw());
 		}catch(RuntimeException ex) {
 			System.out.println(ex.getMessage());
 		}

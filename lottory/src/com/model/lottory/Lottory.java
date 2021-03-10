@@ -55,12 +55,20 @@ public abstract class Lottory {
 		Collections.shuffle(this.balls);
 	}
 
+	public static Ball staticDraw(List<Ball> ori, List<Ball> des) {
+		des.add(ori.get(0));
+		return ori.remove(0);
+	}
+
+	public static Ball staticDraw(List<Ball> ori) {
+		return ori.get(0);
+	}
+
 	public Ball draw() {
 		if (this.pool.size() >= this.drawLimit()) {
 			throw new MaxLimitException(this.drawLimit());
 		} else {
-			this.pool.add(this.balls.get(0));
-			return this.balls.remove(0);
+			return staticDraw(this.balls, this.pool);
 		}
 	}
 
