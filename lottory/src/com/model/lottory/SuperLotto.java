@@ -1,4 +1,4 @@
-package com.lottory.model;
+package com.model.lottory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,5 +27,12 @@ public class SuperLotto extends Lottory {
 		super.shuffle();
 		Collections.shuffle(this.secondBalls);
 	}
+
+	@Override
+	protected int drawLimit() {
+		return 6;
+	}
+	
+	
 
 }

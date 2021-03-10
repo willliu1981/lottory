@@ -1,8 +1,10 @@
-package com.lottory.model;
+package com.model.lottory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.controller.exception.MaxLimitException;
 
 public abstract class Lottory {
 	protected List<Ball> balls;
@@ -29,7 +31,7 @@ public abstract class Lottory {
 
 	public Lottory() {
 		balls = new ArrayList<>();
-		this.pool=new ArrayList<>();
+		this.pool = new ArrayList<>();
 	}
 
 	public abstract void createBall();
@@ -54,14 +56,15 @@ public abstract class Lottory {
 	}
 
 	public Ball draw() {
-		if(this.pool.size()>=this.drawLimit()) {
-			
+		if (this.pool.size() >= this.drawLimit()) {
+			throw new MaxLimitException(this.drawLimit());
+		} else {
+			this.pool.add(this.balls.get(0));
+			return this.balls.remove(0);
 		}
-		this.pool.add(this.balls.get(0));
-		return this.balls.remove(0);
 	}
-	
-	//max limit
+
+	// max limit
 	protected int drawLimit() {
 		return this.balls.size();
 	}
@@ -69,6 +72,5 @@ public abstract class Lottory {
 	public List<Ball> getPool() {
 		return pool;
 	}
-	
-	
+
 }

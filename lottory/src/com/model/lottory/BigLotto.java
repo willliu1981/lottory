@@ -1,4 +1,4 @@
-package com.lottory.model;
+package com.model.lottory;
 
 public class BigLotto extends Lottory{
 

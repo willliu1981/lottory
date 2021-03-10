@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import com.lottory.model.BigLotto;
-import com.lottory.model.Lottory;
-import com.lottory.model.Lottory.Ball;
-import com.lottory.model.SuperLotto;
+import com.model.lottory.BigLotto;
+import com.model.lottory.Lottory;
+import com.model.lottory.SuperLotto;
+import com.model.lottory.Lottory.Ball;
 
 public class Test {
 
@@ -20,12 +20,17 @@ public class Test {
 		lot.shuffle();
 		((SuperLotto) lot).getSecondBalls().stream().forEach(System.out::println);
 
+		try {
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
 		System.out.println("draw: " + lot.draw());
+		System.out.println("draw: " + lot.draw());
+		}catch(RuntimeException ex) {
+			System.out.println(ex.getMessage());
+		}
 		((SuperLotto) lot).getBalls().stream().sorted((x1, x2) -> x1.getNumber() - x2.getNumber()).forEach(x -> {
 			System.out.print(" " + x);
 		});
