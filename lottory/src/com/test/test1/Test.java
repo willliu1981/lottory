@@ -35,7 +35,22 @@ public class Test {
 		((SuperLotto) lot).getBalls().stream().sorted((x1, x2) -> x1.getNumber() - x2.getNumber()).forEach(x -> {
 			System.out.print(" " + x);
 		});
+		System.out.println("\npool");
+		((SuperLotto) lot).getPool() .stream().sorted((x1, x2) -> x1.getNumber() - x2.getNumber()).forEach(x -> {
+			System.out.print(" " + x);
+		});
+		
+		((SuperLotto) lot).reset();
+		System.out.println();
+		((SuperLotto) lot).getBalls().stream().sorted((x1, x2) -> x1.getNumber() - x2.getNumber()).forEach(x -> {
+			System.out.print(" " + x);
+		});
+		System.out.println("\npool");
+		((SuperLotto) lot).getPool() .stream().sorted((x1, x2) -> x1.getNumber() - x2.getNumber()).forEach(x -> {
+			System.out.print(" " + x);
+		});
 
+		
 	}
 
 }

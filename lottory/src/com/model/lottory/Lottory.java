@@ -76,6 +76,11 @@ public abstract class Lottory {
 	protected int drawLimit() {
 		return this.balls.size();
 	}
+	
+	public void reset() {
+		this.balls.addAll(this.pool);
+		this.pool.clear();
+	}
 
 	public List<Ball> getPool() {
 		return pool;

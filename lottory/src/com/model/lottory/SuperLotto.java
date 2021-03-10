@@ -45,4 +45,12 @@ public class SuperLotto extends Lottory {
 		return ball;
 	}
 
+	@Override
+	public void reset() {
+		super.reset();
+		this.secondPool=null;
+	}
+	
+	
+
 }
