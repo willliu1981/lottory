@@ -1,18 +1,21 @@
 package com.lottory.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Lottory {
 	protected List<Ball> balls;
 	protected List<Ball> pool;
 
+	/*
+	 * class Ball is a Ball
+	 */
 	public static class Ball {
 		private Integer number;
 
 		public Ball(Integer number) {
 			this.number = number;
-
 		}
 
 		public Integer getNumber() {
@@ -22,11 +25,11 @@ public abstract class Lottory {
 		public String toString() {
 			return "" + this.number;
 		}
-
 	}
 
 	public Lottory() {
 		balls = new ArrayList<>();
+		this.pool=new ArrayList<>();
 	}
 
 	public abstract void createBall();
@@ -46,4 +49,26 @@ public abstract class Lottory {
 		return this.balls;
 	}
 
+	public void shuffle() {
+		Collections.shuffle(this.balls);
+	}
+
+	public Ball draw() {
+		if(this.pool.size()>=this.drawLimit()) {
+			
+		}
+		this.pool.add(this.balls.get(0));
+		return this.balls.remove(0);
+	}
+	
+	//max limit
+	protected int drawLimit() {
+		return this.balls.size();
+	}
+
+	public List<Ball> getPool() {
+		return pool;
+	}
+	
+	
 }
