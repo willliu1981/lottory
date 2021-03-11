@@ -25,6 +25,7 @@ public class LottoryManager {
 	private static List<Lottory> customerBigLottos = new ArrayList<>();
 	private static List<Lottory> customerSuperLottos = new ArrayList<>();
 	private static List<Lottory> customerLotto539s = new ArrayList<>();
+	private boolean isStart=false;
 
 	private static JFrame mainFrame;
 
@@ -42,11 +43,16 @@ public class LottoryManager {
 	}
 
 	public void start() {
+		if(this.isStart) {
+			return ;
+		}else {
+			this.isStart=true;
+		}
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				if(Math.random()>0.08) {
+				if (Math.random() > 0.12) {
 					return;
 				}
 				Lottory.Ball ball = null;
@@ -64,6 +70,7 @@ public class LottoryManager {
 						System.out.println(exx.getMessage());
 					}
 					this.cancel();
+					isStart=false;
 				}
 				((MainView) mainFrame).getShowNumberControl().showNumber((x1, x2) -> {
 					String str = "";
@@ -88,7 +95,20 @@ public class LottoryManager {
 					((JLabel) x1.get(MainView.Mapping_Number6)).setText(str);
 				});
 			}
-		}, 1000,100);
+		}, 1000, 100);
+	}
+
+	public void reset() {
+		this.masterBigLotto.reset();
+		((MainView) mainFrame).getShowNumberControl().showNumber((x1, x2) -> {
+			((JLabel) x1.get(MainView.Mapping_Number1)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Number2)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Number3)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Number4)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Number5)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Number6)).setText("__");
+			((JLabel) x1.get(MainView.Mapping_Special)).setText("__");
+		});
 	}
 
 	public Lottory.Ball drawBigLotto() {
@@ -98,5 +118,11 @@ public class LottoryManager {
 	public Lottory getLottory() {
 		return LottoryManager.masterBigLotto;
 	}
+
+	public boolean isStart() {
+		return isStart;
+	}
+	
+	
 
 }

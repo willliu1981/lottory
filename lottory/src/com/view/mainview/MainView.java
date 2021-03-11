@@ -127,6 +127,21 @@ public class MainView extends JFrame {
 		btnNewButton.setBackground(SystemColor.controlHighlight);
 		btnNewButton.setFont(new Font("新細明體", Font.PLAIN, 18));
 		panel.add(btnNewButton);
+		
+		JPanel panel_3 = new JPanel();
+		panel.add(panel_3);
+		
+		JButton btnNewButton_1 = new JButton("Reset");
+		btnNewButton_1.setBackground(SystemColor.controlHighlight);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!lottoryManager.isStart()) {
+					lottoryManager.reset();
+				}
+			}
+		});
+		btnNewButton_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel.add(btnNewButton_1);
 
 		/*
 		 * card panel
