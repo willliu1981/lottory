@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.controller.main.LottoryManager;
+import com.controller.viewcontrol.ShowNumberControl;
+import com.model.lottory.BigLotto;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -27,14 +30,24 @@ import java.awt.Rectangle;
 import java.awt.Dimension;
 
 public class MainView extends JFrame {
-	private static final String Card_BigLotto = "biglotto";
-	private static final String Card_SuperLotto = "superlotto";
-	private static final String Card_Lotto539 = "lotto539";
+	public static final String Card_BigLotto = "biglotto";
+	public static final String Card_SuperLotto = "superlotto";
+	public static final String Card_Lotto539 = "lotto539";
+	public static final String Mapping_Parent = "mapping_parent";
+	public static final String Mapping_Special = "mapping_special";
+	public static final String Mapping_Second = "mapping_second";
+	public static final String Mapping_Number1 = "mapping_number1";
+	public static final String Mapping_Number2 = "mapping_number2";
+	public static final String Mapping_Number3 = "mapping_number3";
+	public static final String Mapping_Number4 = "mapping_number4";
+	public static final String Mapping_Number5 = "mapping_number5";
+	public static final String Mapping_Number6 = "mapping_number6";
 
 	private JPanel contentPane;
 	private JList list_LottoryType;
 	private JPanel panel_card;
-	LottoryManager manager;
+	private LottoryManager lottoryManager;
+	private ShowNumberControl showNumberControl;
 
 	/**
 	 * Launch the application.
@@ -56,8 +69,9 @@ public class MainView extends JFrame {
 	 * Create the frame.
 	 */
 	public MainView() {
-		manager = new LottoryManager(this);
-		manager.init();
+		lottoryManager = new LottoryManager(this);
+		showNumberControl = new ShowNumberControl();
+		lottoryManager.init();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 665, 439);
@@ -107,7 +121,7 @@ public class MainView extends JFrame {
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				manager.start();
+				lottoryManager.start();
 			}
 		});
 		btnNewButton.setBackground(SystemColor.controlHighlight);
@@ -141,45 +155,60 @@ public class MainView extends JFrame {
 		panel_biglotto.add(lblNewLabel, BorderLayout.NORTH);
 
 		JPanel panel_1 = new JPanel();
+		showNumberControl.add(Mapping_Parent, panel_1, null);
 		panel_biglotto.add(panel_1, BorderLayout.CENTER);
 
-		JLabel lblNewLabel_3 = new JLabel("Number");
+		JLabel lblNewLabel_3 = new JLabel("__");
+		lblNewLabel_3.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number1, lblNewLabel_3, lottoryManager.getLottory());
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_3_1 = new JLabel("Number");
+		JLabel lblNewLabel_3_1 = new JLabel("__");
+		lblNewLabel_3_1.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number2, lblNewLabel_3_1, lottoryManager.getLottory());
 		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_1.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_1);
 
-		JLabel lblNewLabel_3_2 = new JLabel("Number");
+		JLabel lblNewLabel_3_2 = new JLabel("__");
+		lblNewLabel_3_2.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number3, lblNewLabel_3_2, lottoryManager.getLottory());
 		lblNewLabel_3_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_2.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_2);
 
-		JLabel lblNewLabel_3_2_1 = new JLabel("Number");
+		JLabel lblNewLabel_3_2_1 = new JLabel("__");
+		lblNewLabel_3_2_1.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number4, lblNewLabel_3_2_1, lottoryManager.getLottory());
 		lblNewLabel_3_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_2_1.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_2_1);
 
-		JLabel lblNewLabel_3_2_2 = new JLabel("Number");
+		JLabel lblNewLabel_3_2_2 = new JLabel("__");
+		lblNewLabel_3_2_2.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number5, lblNewLabel_3_2_2, lottoryManager.getLottory());
 		lblNewLabel_3_2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2_2.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_2_2.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_2_2);
 
-		JLabel lblNewLabel_3_2_3 = new JLabel("Number");
+		JLabel lblNewLabel_3_2_3 = new JLabel("__");
+		lblNewLabel_3_2_3.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Number6, lblNewLabel_3_2_3, lottoryManager.getLottory());
 		lblNewLabel_3_2_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2_3.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_2_3.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_2_3);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setPreferredSize(new Dimension(20, 10));
 		panel_1.add(panel_2);
 
-		JLabel lblNewLabel_3_2_3_1 = new JLabel("Number");
+		JLabel lblNewLabel_3_2_3_1 = new JLabel("__");
+		lblNewLabel_3_2_3_1.setPreferredSize(new Dimension(30, 20));
+		showNumberControl.add(Mapping_Special, lblNewLabel_3_2_3_1, lottoryManager.getLottory());
 		lblNewLabel_3_2_3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2_3_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel_3_2_3_1.setFont(new Font("新細明體", Font.PLAIN, 24));
 		panel_1.add(lblNewLabel_3_2_3_1);
 
 		JPanel panel_superlotto = new JPanel();
@@ -200,4 +229,13 @@ public class MainView extends JFrame {
 		lblNewLabel_2.setFont(new Font("新細明體", Font.PLAIN, 18));
 		panel_lotto539.add(lblNewLabel_2, BorderLayout.NORTH);
 	}
+
+	public LottoryManager getLottoryManager() {
+		return lottoryManager;
+	}
+
+	public ShowNumberControl getShowNumberControl() {
+		return showNumberControl;
+	}
+
 }
