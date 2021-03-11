@@ -8,4 +8,9 @@ public class Lotto539  extends Lottory {
 		
 	}
 
+	@Override
+	protected int drawLimit() {
+		return 5;
+	}
+
 }

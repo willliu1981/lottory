@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 public class MainView extends JFrame {
 	private static final String Card_BigLotto = "biglotto";
@@ -32,6 +34,7 @@ public class MainView extends JFrame {
 	private JPanel contentPane;
 	private JList list_LottoryType;
 	private JPanel panel_card;
+	LottoryManager manager;
 
 	/**
 	 * Launch the application.
@@ -53,7 +56,7 @@ public class MainView extends JFrame {
 	 * Create the frame.
 	 */
 	public MainView() {
-		LottoryManager manager = new LottoryManager();
+		manager = new LottoryManager(this);
 		manager.init();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,13 +75,13 @@ public class MainView extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				switch (list_LottoryType.getSelectedIndex()) {
 				case 0:
-					((CardLayout)panel_card.getLayout()).show(panel_card, Card_BigLotto);
+					((CardLayout) panel_card.getLayout()).show(panel_card, Card_BigLotto);
 					break;
 				case 1:
-					((CardLayout)panel_card.getLayout()).show(panel_card, Card_SuperLotto);
+					((CardLayout) panel_card.getLayout()).show(panel_card, Card_SuperLotto);
 					break;
 				case 2:
-					((CardLayout)panel_card.getLayout()).show(panel_card, Card_Lotto539);
+					((CardLayout) panel_card.getLayout()).show(panel_card, Card_Lotto539);
 					break;
 				default:
 					break;
@@ -102,15 +105,9 @@ public class MainView extends JFrame {
 		panel.add(list_LottoryType);
 
 		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				manager.start();
 			}
 		});
 		btnNewButton.setBackground(SystemColor.controlHighlight);
@@ -124,26 +121,71 @@ public class MainView extends JFrame {
 		panel_card.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				
+
 			}
 		});
 		panel_card.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		contentPane.add(panel_card, BorderLayout.CENTER);
 		panel_card.setLayout(new CardLayout(0, 0));
 
+		/*
+		 * big lotto panel
+		 */
 		JPanel panel_biglotto = new JPanel();
 		panel_card.add(panel_biglotto, Card_BigLotto);
 		panel_biglotto.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel = new JLabel("Big Lotto");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 18));
 		panel_biglotto.add(lblNewLabel, BorderLayout.NORTH);
 
+		JPanel panel_1 = new JPanel();
+		panel_biglotto.add(panel_1, BorderLayout.CENTER);
+
+		JLabel lblNewLabel_3 = new JLabel("Number");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_3_1 = new JLabel("Number");
+		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_1);
+
+		JLabel lblNewLabel_3_2 = new JLabel("Number");
+		lblNewLabel_3_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_2);
+
+		JLabel lblNewLabel_3_2_1 = new JLabel("Number");
+		lblNewLabel_3_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_2_1);
+
+		JLabel lblNewLabel_3_2_2 = new JLabel("Number");
+		lblNewLabel_3_2_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_2.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_2_2);
+
+		JLabel lblNewLabel_3_2_3 = new JLabel("Number");
+		lblNewLabel_3_2_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_3.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_2_3);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setPreferredSize(new Dimension(20, 10));
+		panel_1.add(panel_2);
+
+		JLabel lblNewLabel_3_2_3_1 = new JLabel("Number");
+		lblNewLabel_3_2_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_3_1.setFont(new Font("新細明體", Font.PLAIN, 18));
+		panel_1.add(lblNewLabel_3_2_3_1);
+
 		JPanel panel_superlotto = new JPanel();
 		panel_card.add(panel_superlotto, Card_SuperLotto);
 		panel_superlotto.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Super Lotto");
 		lblNewLabel_1.setFont(new Font("新細明體", Font.PLAIN, 18));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -152,7 +194,7 @@ public class MainView extends JFrame {
 		JPanel panel_lotto539 = new JPanel();
 		panel_card.add(panel_lotto539, Card_Lotto539);
 		panel_lotto539.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Lotto 539");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("新細明體", Font.PLAIN, 18));

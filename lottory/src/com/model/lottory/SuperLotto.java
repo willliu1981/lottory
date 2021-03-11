@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.controller.exception.DrawFinishException;
+
 public class SuperLotto extends Lottory {
 	protected List<Ball> secondBalls;
 	protected Ball secondPool;
@@ -40,7 +42,8 @@ public class SuperLotto extends Lottory {
 		try {
 			ball = super.draw();
 		} catch (RuntimeException ex) {
-			ball = this.secondPool = staticDraw(secondBalls);
+			ball = this.secondPool = staticSimpleDraw(secondBalls);
+			throw new DrawFinishException(ball.getNumber());
 		}
 		return ball;
 	}

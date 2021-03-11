@@ -55,12 +55,15 @@ public abstract class Lottory {
 		Collections.shuffle(this.balls);
 	}
 
-	public static Ball staticDraw(List<Ball> ori, List<Ball> des) {
+	public static Ball staticNormalDraw(List<Ball> ori, List<Ball> des) {
 		des.add(ori.get(0));
 		return ori.remove(0);
 	}
 
-	public static Ball staticDraw(List<Ball> ori) {
+	/*
+	 * never remove ball
+	 */
+	public static Ball staticSimpleDraw(List<Ball> ori) {
 		return ori.get(0);
 	}
 
@@ -68,14 +71,12 @@ public abstract class Lottory {
 		if (this.pool.size() >= this.drawLimit()) {
 			throw new MaxLimitException(this.drawLimit());
 		} else {
-			return staticDraw(this.balls, this.pool);
+			return staticNormalDraw(this.balls, this.pool);
 		}
 	}
 
 	// max limit
-	protected int drawLimit() {
-		return this.balls.size();
-	}
+	protected abstract int drawLimit() ;
 	
 	public void reset() {
 		this.balls.addAll(this.pool);
