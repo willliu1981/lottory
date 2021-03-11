@@ -155,7 +155,6 @@ public class MainView extends JFrame {
 		panel_biglotto.add(lblNewLabel, BorderLayout.NORTH);
 
 		JPanel panel_1 = new JPanel();
-		showNumberControl.add(Mapping_Parent, panel_1, null);
 		panel_biglotto.add(panel_1, BorderLayout.CENTER);
 
 		JLabel lblNewLabel_3 = new JLabel("__");

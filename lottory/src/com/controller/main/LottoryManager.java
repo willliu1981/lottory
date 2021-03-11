@@ -46,12 +46,24 @@ public class LottoryManager {
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
+				if(Math.random()>0.08) {
+					return;
+				}
 				Lottory.Ball ball = null;
 				try {
 					ball = drawBigLotto();
 				} catch (DrawFinishException ex) {
 					System.out.println(ex.getMessage());
-					//this.cancel();
+					try {
+						((MainView) mainFrame).getShowNumberControl().showNumber((x1, x2) -> {
+							((JLabel) x1.get(MainView.Mapping_Special))
+									.setText(((BigLotto) x2.get(MainView.Mapping_Special)).getSpecialBall().toString());
+							;
+						});
+					} catch (Exception exx) {
+						System.out.println(exx.getMessage());
+					}
+					this.cancel();
 				}
 				((MainView) mainFrame).getShowNumberControl().showNumber((x1, x2) -> {
 					String str = "";
@@ -74,24 +86,9 @@ public class LottoryManager {
 					str = (pool = ((BigLotto) x2.get(MainView.Mapping_Number6)).getPool()).size() <= 5 ? "__"
 							: pool.get(5).getNumber().toString();
 					((JLabel) x1.get(MainView.Mapping_Number6)).setText(str);
-					JPanel p = ((JPanel) x1.get(MainView.Mapping_Parent));
-					Arrays.asList(p.getComponents()).stream().forEach(x -> {
-
-					});
-					// ((JPanel) x1.get(MainView.Mapping_Parent)).repaint();
 				});
-
 			}
-		}, 1000);
-		try {
-			((MainView) mainFrame).getShowNumberControl().showNumber((x1, x2) -> {
-				((JLabel) x1.get(MainView.Mapping_Special))
-						.setText(((BigLotto) x2.get(MainView.Mapping_Special)).getSpecialBall().toString());
-				;
-			});
-		} catch (Exception ex) {
-
-		}
+		}, 1000,100);
 	}
 
 	public Lottory.Ball drawBigLotto() {
